@@ -1,8 +1,8 @@
 .footer {
     width: 100%;
-    background-color: green;
+    background-color: #007700;
     color: #fff;
     text-align: center;
     font-size: 0.9rem;
-    font-weight: 500px;
+    font-weight: 500;
 }
