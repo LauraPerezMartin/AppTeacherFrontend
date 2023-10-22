@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Public } from 'src/app/interfaces/public.interface';
 
 @Component({
   selector: 'app-mapa',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./mapa.component.css']
 })
 export class MapaComponent {
-
+  @Input() profesores: Public | any;
 }
