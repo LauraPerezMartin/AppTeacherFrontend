@@ -1,1 +1,10 @@
-<p>profesor-card works!</p>
+<div class="card">
+    <img src="{{profesor?.imagen}}" class="card-img-top" alt="{{profesor?.nombre}} {{profesor?.apellidos}}">
+    <div class="card-body">
+        <h4 class="card-title">{{profesor?.nombre}} {{profesor?.apellidos}}</h4>
+        <p class="card-text"><i class="fa-solid fa-location-dot"></i> <span class="fw-bold">{{profesor?.ciudad}}</span>
+        </p>
+        <p class="card-text"><span class="fw-bold">Experiencia:</span> {{profesor?.experiencia}}</p>
+        <p class="card-text"><span class="fw-bold">Precio:</span> {{profesor?.precio}}</p>
+    </div>
+</div>
