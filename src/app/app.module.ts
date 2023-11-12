@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +12,7 @@ import { HomeComponent } from './components/home/home.component';
 import { MapaComponent } from './components/home/mapa/mapa.component';
 import { ProfesorCardComponent } from './components/home/profesor-card/profesor-card.component';
 import { ProfesorListComponent } from './components/home/profesor-list/profesor-list.component';
+import { ProfesorSearchComponent } from './components/home/profesor-search/profesor-search.component';
 
 @NgModule({
   declarations: [
@@ -22,12 +23,14 @@ import { ProfesorListComponent } from './components/home/profesor-list/profesor-
     HomeComponent,
     MapaComponent,
     ProfesorCardComponent,
-    ProfesorListComponent
+    ProfesorListComponent,
+    ProfesorSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
     ReactiveFormsModule
   ],
   providers: [],
