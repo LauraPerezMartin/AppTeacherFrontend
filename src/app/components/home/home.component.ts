@@ -8,7 +8,7 @@ import { PublicService } from 'src/app/services/public.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  profesoresPublic: Public[] = [];
+  /*profesoresPublic: Public[] = [];
 
   constructor(private publicService: PublicService) { }
 
@@ -19,5 +19,5 @@ export class HomeComponent {
     } catch (error: any) {
       console.log(error);
     }
-  }
+  }*/
 }
