@@ -17,4 +17,8 @@ export class PublicService {
   getAsignaturas(): Promise<any> {
     return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/asignaturas`));
   }
+
+  getCiudades(): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/ciudades`));
+  }
 }

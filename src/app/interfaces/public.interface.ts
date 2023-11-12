@@ -6,6 +6,7 @@ export interface Public {
     ciudad: string;
     latitud: number;
     longitud: number;
+    asignaturas: any[];
     imagen?: string;
     experiencia: number;
     precio: number;
