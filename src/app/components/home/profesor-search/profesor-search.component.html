@@ -1,0 +1,18 @@
+<form class="row mb-4" #searchForm="ngForm" (ngSubmit)="getDataForm(searchForm)">
+    <div class="col-4">
+        <select id="ciudad" name="ciudad" class="form-select" ngModel>
+            <option value="" selected>Selecciona una ciudad</option>
+            <option value="{{ciudad?.ciudad}}" *ngFor="let ciudad of ciudades">{{ciudad?.ciudad}}</option>
+        </select>
+    </div>
+    <div class="col-4">
+        <select id="asignatura" name="asignatura" class="form-select" ngModel>
+            <option value="" selected>Selecciona una asignatura</option>
+            <option value="{{asignatura?.asignatura_id}}" *ngFor="let asignatura of asignaturas">{{asignatura?.nombre}}
+            </option>
+        </select>
+    </div>
+    <div class="col-4">
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </div>
+</form>
