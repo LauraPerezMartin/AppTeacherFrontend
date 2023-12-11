@@ -13,6 +13,8 @@ import { MapaComponent } from './components/home/mapa/mapa.component';
 import { ProfesorCardComponent } from './components/home/profesor-card/profesor-card.component';
 import { ProfesorListComponent } from './components/home/profesor-list/profesor-list.component';
 import { ProfesorSearchComponent } from './components/home/profesor-search/profesor-search.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegistroComponent } from './components/registro/registro.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { ProfesorSearchComponent } from './components/home/profesor-search/profe
     MapaComponent,
     ProfesorCardComponent,
     ProfesorListComponent,
-    ProfesorSearchComponent
+    ProfesorSearchComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
