@@ -11,11 +11,13 @@ export interface Usuario {
     latitud?: string;
     longitud?: string;
     imagen?: string;
-    edad: number;
+    edad?: number;
     fecha_nacimiento: string;
     genero: string;
     dni: string;
     fecha_alta?: string;
     rol: string;
+    experiencia?: number,
+    precio?: number,
     borrado: boolean;
 }
