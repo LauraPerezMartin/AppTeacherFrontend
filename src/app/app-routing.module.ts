@@ -7,9 +7,9 @@ import { RegistroComponent } from './components/registro/registro.component'
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'registro', component: RegistroComponent },
+  { path: 'home', component: HomeComponent, title: 'Inicio', },
+  { path: 'login', component: LoginComponent, title: 'Login', },
+  { path: 'registro', component: RegistroComponent, title: 'Registro' },
   { path: '**', component: C404Component }
 ];
 
