@@ -3,6 +3,7 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { UsuariosService } from 'src/app/services/usuarios.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -70,7 +71,11 @@ export class RegistroComponent {
       console
       let res = await this.usuariosService.registro(usuario);
       if (res.id) {
-        alert('El usuario se ha creado correctamente');
+        Swal.fire({
+          title: "Registro",
+          text: "El usuario se ha creado correctamente",
+          icon: "success"
+        });
         this.router.navigate(['/home']);
       }
     } catch (error) {
