@@ -76,7 +76,7 @@ export class RegistroComponent {
           text: "El usuario se ha creado correctamente",
           icon: "success"
         });
-        this.router.navigate(['/home']);
+        this.router.navigate(['/login']);
       }
     } catch (error) {
       console.log(error);

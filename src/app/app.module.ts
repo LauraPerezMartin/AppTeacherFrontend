@@ -15,6 +15,7 @@ import { ProfesorListComponent } from './components/home/profesor-list/profesor-
 import { ProfesorSearchComponent } from './components/home/profesor-search/profesor-search.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RegistroComponent } from './components/registro/registro.component';
     ProfesorListComponent,
     ProfesorSearchComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    AdminDashboardComponent
   ],
   imports: [
     BrowserModule,
