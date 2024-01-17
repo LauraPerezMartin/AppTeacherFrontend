@@ -23,6 +23,7 @@ export class LoginComponent {
       if (response.token) {
         localStorage.setItem('mytoken', response.token);
         const rol = this.getRolDeToken(response.token);
+        localStorage.setItem('rol', rol);
         this.router.navigate([`/dashboard/${rol}`])
       } else {
         Swal.fire({

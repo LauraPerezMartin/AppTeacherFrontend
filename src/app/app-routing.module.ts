@@ -6,13 +6,14 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component'
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { loginGuard } from './guards/login.guard';
+import { rolGuard } from './guards/rol.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
   { path: 'home', component: HomeComponent, title: 'Inicio', },
   { path: 'login', component: LoginComponent, title: 'Login', },
   { path: 'registro', component: RegistroComponent, title: 'Registro' },
-  { path: 'dashboard/admin', component: AdminDashboardComponent, canActivate: [loginGuard], title: 'Dashboard administradores' },
+  { path: 'dashboard/admin', component: AdminDashboardComponent, canActivate: [loginGuard, rolGuard], title: 'Dashboard administradores' },
   { path: '**', component: C404Component }
 ];
 
