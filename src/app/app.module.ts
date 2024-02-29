@@ -16,6 +16,8 @@ import { ProfesorSearchComponent } from './components/home/profesor-search/profe
 import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
+import { DashboardListComponent } from './components/dashboard-list/dashboard-list.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
     ProfesorSearchComponent,
     LoginComponent,
     RegistroComponent,
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    DashboardListComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,
