@@ -7,7 +7,7 @@ import { lastValueFrom } from 'rxjs';
 })
 export class PublicService {
 
-  private baseUrl: string = 'https://appteacherbackend.onrender.com/api/public/';
+  private baseUrl: string = 'https://appteacherbackend.onrender.com/api/public';
   constructor(private httpClient: HttpClient) { }
 
   getAll(): Promise<any> {
