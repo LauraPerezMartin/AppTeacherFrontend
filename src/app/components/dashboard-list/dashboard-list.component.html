@@ -1,0 +1,42 @@
+<div class="pb-5">
+    <div
+        class="table-header p-2 border border-1 border-dark-subtle rounded-top bg-secondary-subtle fw-bold text-center">
+        <div class="list-foto">Foto</div>
+        <div class="list list-nombre">Nombre</div>
+        <div class="list list-telefono">Telefono</div>
+        <div class="list list-email">Email</div>
+        <div class="list list-ciudad">Ciudad</div>
+        <div class="list list-asignaturas">Asignaturas</div>
+        <!-- <div class="width-5">% Perfil</div> -->
+        <div class="list list-botones">Acciones</div>
+    </div>
+    <div class="table-content p-2 border-dark-subtle d-flex text-center" *ngFor="let usuario of listadoUsuarios">
+        <div class="list-foto"><img class="foto" src="{{usuario.imagen}}"
+                alt="{{usuario.nombre}} {{usuario.apellidos}}"></div>
+        <div class="list list-nombre"><span class="list-label">Nombre:</span>{{usuario.nombre}} {{usuario.apellidos}}
+        </div>
+        <div class="list list-telefono"><span class="list-label">Teléfono:</span>{{usuario.telefono}}</div>
+        <div class="list list-email"><span class="list-label">Email:</span>{{usuario.email}}</div>
+        <div class="list list-ciudad"><span class="list-label">Ciudad:</span>{{usuario.ciudad}}</div>
+        <div class="list list-asignaturas">
+            <span class="list-label">Asignaturas:</span>
+            <span *ngFor="let asignatura of usuario.asignaturas; let ultimo = last">{{asignatura.nombre}}<span
+                    *ngIf="!ultimo">, </span> </span>
+        </div>
+        <div class="list list-botones d-flex">
+            <div class="list-boton" *ngIf="!usuario.borrado">
+                <button *ngIf="usuario.validado" (click)="validarProfesor(usuario.id, usuario.validado)"
+                    class="boton-icono"><i class="bi bi-person-fill-check activado"></i></button>
+                <button *ngIf="!usuario.validado" (click)="validarProfesor(usuario.id, usuario.validado)"
+                    class="boton-icono"><i class=" bi bi-person-fill-x desactivado"></i></button>
+            </div>
+            <div class="list-boton" *ngIf="!usuario.borrado">
+                <a [routerLink]="[urlPerfil, 'usuario', usuario.id]"><i class=" bi bi-eye-fill activado"></i></a>
+            </div>
+            <div class="list-boton align-self-end"><button (click)="borrarUsuario(usuario.id, usuario.borrado)"
+                    [ngClass]="{ desactivado: usuario.borrado, activado: !usuario.borrado}" class="boton-icono">
+                    <i class=" bi bi-trash3-fill"></i></button>
+            </div>
+        </div>
+    </div>
+</div>

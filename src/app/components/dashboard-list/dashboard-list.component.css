@@ -1,0 +1,91 @@
+.table-header {
+    display: none;
+}
+
+.table-content {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.list-foto {
+    align-self: center;
+    padding: 10px;
+    flex-basis: 100%;
+    flex-shrink: 1;
+}
+
+.list-label {
+    padding-right: 5px;
+    font-weight: 600;
+}
+
+.foto {
+    width: 100%;
+    border-radius: 50%;
+}
+
+@media (min-width: 992px) {
+
+    .table-header {
+        display: flex;
+    }
+
+    .table-content {
+        border-top: 0;
+        border-radius: 0;
+        margin-bottom: 0;
+    }
+
+    .table-header,
+    .table-content {
+        flex-wrap: nowrap;
+        flex-direction: row;
+        border-top: none;
+    }
+
+    .list {
+        border-top: 0;
+        border-left: 1px solid #bbb;
+        padding: 0 5px;
+    }
+
+    .list-foto {
+        flex-basis: 7%;
+        padding: 0 10px;
+    }
+
+    .list-username,
+    .list-telefono,
+    .list-ciudad {
+        flex-basis: 10%;
+    }
+
+    .list-botones,
+    .list-asignaturas {
+        flex-basis: 15%;
+    }
+
+    .list-boton {
+        flex-basis: 33%;
+    }
+
+    .list-nombre {
+        flex-basis: 25%;
+    }
+
+    .list-email {
+        flex-basis: 30%;
+    }
+
+    .list-label {
+        display: none;
+    }
+
+    .bi {
+        font-size: 1.3rem;
+    }
+
+}
