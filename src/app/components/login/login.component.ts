@@ -42,6 +42,5 @@ export class LoginComponent {
   getRolDeToken(token: string): string {
     const decodeToken = jwtDecode<any>(token);
     return decodeToken.usuario_rol;
-    ;
   }
 }

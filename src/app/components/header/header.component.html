@@ -11,7 +11,7 @@
                     <a class="nav-link" aria-current="page" routerLinkActive="active"
                         [routerLink]="['/home']">Inicio</a>
                     <a *ngIf="rolAdmin" class="nav-link" routerLinkActive="active"
-                        [routerLink]="['/dashboard/admin']">Administradores</a>
+                        [routerLink]="['/dashboard/admin']">Dashboard</a>
                     <a *ngIf="!logado" class="nav-link" routerLinkActive="active"
                         [routerLink]="['/registro']">Registro</a>
                     <a *ngIf="!logado" class="btn btn-outline-success" routerLinkActive="active"
