@@ -6,7 +6,7 @@ import { PublicService } from 'src/app/services/public.service';
   templateUrl: './profesor-search.component.html',
   styleUrls: ['./profesor-search.component.css']
 })
-export class ProfesorSearchComponent {
+export class ProfesorSearchComponent implements OnInit {
   asignaturas: any[] = [];
   ciudades: any[] = [];
   @Output() searchTerms: EventEmitter<any>;
@@ -15,7 +15,7 @@ export class ProfesorSearchComponent {
     this.searchTerms = new EventEmitter();
   }
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     try {
       this.ciudades = await this.publicService.getCiudades();
       this.asignaturas = await this.publicService.getAsignaturas();
@@ -23,7 +23,8 @@ export class ProfesorSearchComponent {
       console.log(error);
     }
   }
-  getDataForm(searchForm: any) {
+
+  getDataForm(searchForm: any): void {
     this.searchTerms.emit(searchForm.value);
   }
 }

@@ -1,2 +1,3 @@
-<!--<app-mapa [profesores]="profesoresPublic"></app-mapa> -->
-<app-profesor-list></app-profesor-list>
+<app-mapa [profesores]="listadoProfesores"></app-mapa>
+<app-profesor-search (searchTerms)="searchProfesores($event)"></app-profesor-search>
+<app-profesor-list [profesores]="listadoProfesores"></app-profesor-list>
