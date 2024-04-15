@@ -1,7 +1,6 @@
 <h2 class="title">Listado de profesores</h2>
-<app-profesor-search (searchTerms)="searchProfesores($event)"></app-profesor-search>
 <section class="row">
-    <article class="col-12 col-md-6 col-xl-3 mb-4" *ngFor="let profesor of listadoProfesores">
+    <article class="col-12 col-md-6 col-xl-3 mb-4" *ngFor="let profesor of profesores">
         <app-profesor-card [profesor]="profesor"></app-profesor-card>
     </article>
 </section>
