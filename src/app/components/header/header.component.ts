@@ -19,8 +19,8 @@ export class HeaderComponent {
 
     this.logado = (token) ? true : false;
     this.rolAdmin = (this.logado && rol === 'admin') ? true : false;
-    this.rolProfe = (token && rol === 'profe') ? true : false;
-    this.rolAlum = (token && rol === 'alum') ? true : false;
+    this.rolProfe = (this.logado && rol === 'profe') ? true : false;
+    this.rolAlum = (this.logado && rol === 'alum') ? true : false;
   }
 
   logout(): void {
