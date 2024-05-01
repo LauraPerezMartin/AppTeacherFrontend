@@ -8,6 +8,7 @@ import { AdminDashboardComponent } from './components/admin-dashboard/admin-dash
 import { loginGuard } from './guards/login.guard';
 import { rolGuard } from './guards/rol.guard';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ProfeDashboardComponent } from './components/profe-dashboard/profe-dashboard.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -15,7 +16,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Login', },
   { path: 'registro', component: RegistroComponent, title: 'Registro' },
   { path: 'dashboard/admin', component: AdminDashboardComponent, canActivate: [loginGuard, rolGuard], title: 'Dashboard administradores' },
-  { path: 'dashboard/admin/usuario/:idusuario', component: PerfilComponent, canActivate: [loginGuard, rolGuard], title: 'Profesores' },
+  { path: 'dashboard/admin/usuario/:idusuario', component: PerfilComponent, canActivate: [loginGuard, rolGuard], title: 'Perfil del profesor' },
+  { path: 'dashboard/profe', component: ProfeDashboardComponent, canActivate: [loginGuard, rolGuard], title: 'Dashboard profesores' },
+  { path: 'dashboard/profe/perfil', component: PerfilComponent, canActivate: [loginGuard, rolGuard], title: 'Perfil' },
   { path: '**', component: C404Component }
 ];
 

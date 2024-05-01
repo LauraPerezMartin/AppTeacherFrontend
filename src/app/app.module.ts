@@ -18,6 +18,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { DashboardListComponent } from './components/dashboard-list/dashboard-list.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { ProfeDashboardComponent } from './components/profe-dashboard/profe-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     RegistroComponent,
     AdminDashboardComponent,
     DashboardListComponent,
-    PerfilComponent
+    PerfilComponent,
+    ProfeDashboardComponent
   ],
   imports: [
     BrowserModule,
