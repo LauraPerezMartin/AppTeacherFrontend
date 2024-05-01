@@ -3,17 +3,26 @@
         <img src="{{usuario.imagen}}" class="rounded" alt="{{usuario.nombre}} {{usuario.apellidos}}">
         <div class="list list-botones d-flex">
             <div class="list-boton" *ngIf="!usuario.borrado">
-                <a [routerLink]="['/dashboard/', rolUsuario]"><i class=" bi bi-card-list activado"></i></a>
+                <a [routerLink]="['/dashboard/', rolUsuario]"><i class="bi bi-arrow-left-square activado"></i></a>
             </div>
 
-            <div class="list-boton" *ngIf="!usuario.borrado">
+            <div class="list-boton" *ngIf="!usuario.borrado && rolUsuario==='admin'">
+                <!-- boton validar -->
                 <button *ngIf="usuario?.validado" (click)="validarProfesor(usuario.id, usuario.validado)"
-                    class="boton-icono"><i class="bi bi-person-fill-check activado"></i></button>
+                    class="boton-icono" alt="Validar"><i class="bi bi-person-fill-check activado"></i></button>
                 <button *ngIf="!usuario.validado" (click)="validarProfesor(usuario.id, usuario.validado)"
-                    class="boton-icono"><i class=" bi bi-person-fill-x desactivado"></i></button>
+                    class="boton-icono" alt="Validar"><i class=" bi bi-person-fill-x desactivado"></i></button>
             </div>
-            <div class="list-boton align-self-end"><button (click)="borrarUsuario(usuario.id, usuario.borrado)"
-                    [ngClass]="{ desactivado: usuario?.borrado, activado: !usuario?.borrado}" class="boton-icono">
+
+            <div class="list-boton" *ngIf="rolUsuario !== 'admin'">
+                <a [routerLink]="['/dashboard/', rolUsuario]"><i class="bi bi-pencil-square activado"
+                        alt="Modificar"></i></a>
+            </div>
+
+            <div class="list-boton align-self-end">
+                <button (click)="borrarUsuario(usuario.id, usuario.borrado)"
+                    [ngClass]="{ desactivado: usuario?.borrado, activado: !usuario?.borrado}" class="boton-icono"
+                    alt="Borrar">
                     <i class=" bi bi-trash3-fill"></i></button>
             </div>
 

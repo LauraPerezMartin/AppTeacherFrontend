@@ -18,11 +18,25 @@ export class UsuariosService {
     return lastValueFrom(this.httpClient.post<Usuario>(`${this.baseUrl}registro`, usuario, this.getHeaders()));
   }
 
+  perfil(): Promise<Usuario> {
+    return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}perfil`, this.getHeaders()));
+  }
+
   getHeaders() {
-    return {
-      headers: new HttpHeaders({
-        "Content-type": "application/json",
-      })
+    let token = localStorage.getItem('mytoken');
+    if (token) {
+      return {
+        headers: new HttpHeaders({
+          "Content-type": "application/json",
+          "Authorization": token
+        })
+      }
+    } else {
+      return {
+        headers: new HttpHeaders({
+          "Content-type": "application/json",
+        })
+      }
     }
   }
 }

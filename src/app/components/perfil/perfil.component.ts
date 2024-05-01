@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 
 import { AdministradoresService } from 'src/app/services/administradores.service';
+import { UsuariosService } from 'src/app/services/usuarios.service';
 import { Profesor } from 'src/app/interfaces/profesor.interface';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 
@@ -19,6 +20,7 @@ export class PerfilComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private administradoresService: AdministradoresService,
+    private usuariosService: UsuariosService,
     private router: Router
   ) { }
 
@@ -26,7 +28,11 @@ export class PerfilComponent implements OnInit {
     this.activatedRoute.params.subscribe(async (params: any) => {
 
       try {
-        const response = await this.administradoresService.getById(params.idusuario);
+        //en función del rol consultamos el perfil de otro o el nuestro
+        const response = (this.rolUsuario === 'admin') ?
+          await this.administradoresService.getById(params.idusuario) :
+          await this.usuariosService.perfil();
+
         this.usuario = response;
 
       } catch (error) {
