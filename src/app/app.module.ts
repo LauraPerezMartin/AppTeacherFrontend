@@ -14,7 +14,7 @@ import { ProfesorCardComponent } from './components/home/profesor-card/profesor-
 import { ProfesorListComponent } from './components/home/profesor-list/profesor-list.component';
 import { ProfesorSearchComponent } from './components/home/profesor-search/profesor-search.component';
 import { LoginComponent } from './components/login/login.component';
-import { RegistroComponent } from './components/registro/registro.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { DashboardListComponent } from './components/dashboard-list/dashboard-list.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
@@ -32,7 +32,7 @@ import { ProfeDashboardComponent } from './components/profe-dashboard/profe-dash
     ProfesorListComponent,
     ProfesorSearchComponent,
     LoginComponent,
-    RegistroComponent,
+    FormularioComponent,
     AdminDashboardComponent,
     DashboardListComponent,
     PerfilComponent,
