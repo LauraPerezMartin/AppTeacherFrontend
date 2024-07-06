@@ -22,6 +22,10 @@ export class UsuariosService {
     return lastValueFrom(this.httpClient.get<Usuario>(`${this.baseUrl}perfil`, this.getHeaders()));
   }
 
+  updateUsuario(usuario: Usuario): Promise<any> {
+    return lastValueFrom(this.httpClient.put<Usuario>(`${this.baseUrl}update`, usuario, this.getHeaders()));
+  }
+
   getHeaders() {
     let token = localStorage.getItem('mytoken');
     if (token) {

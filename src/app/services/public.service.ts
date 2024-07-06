@@ -18,6 +18,10 @@ export class PublicService {
     return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/asignaturas`));
   }
 
+  getAllAsignaturas(): Promise<any> {
+    return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/all-asignaturas`));
+  }
+
   getCiudades(): Promise<any> {
     return lastValueFrom(this.httpClient.get<any>(`${this.baseUrl}/ciudades`));
   }

@@ -19,5 +19,6 @@ export interface Usuario {
     rol: string;
     experiencia?: number,
     precio?: number,
+    asignaturas?: []
     borrado: boolean;
 }
