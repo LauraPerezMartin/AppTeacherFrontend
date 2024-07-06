@@ -1,0 +1,159 @@
+<h1 class="mb-4 text-center">{{tipo}}</h1>
+<form class="row g-3 mb-5" [formGroup]="formulario" (ngSubmit)="getData()">
+    <div class="col-md-4">
+        <label for="nombre" class="form-label">Nombre*</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        <div class="invalid-form-control" *ngIf=" errorControl('nombre', 'minlength')">
+            El nombre debe tener más de 2 caracteres.
+        </div>
+        <div class="invalid-form-control" *ngIf="errorControl('nombre', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="apellidos" class="form-label">Apellidos*</label>
+        <input type="text" class="form-control" id="apellidos" formControlName="apellidos">
+        <div class="invalid-form-control" *ngIf=" errorControl('apellidos', 'minlength')">
+            Debes introducir unos apellidos válidos.
+        </div>
+        <div class="invalid-form-control" *ngIf="errorControl('apellidos', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-4" *ngIf="!logado">
+        <label for="username" class="form-label">Usuario*</label>
+        <input type="text" class="form-control" id="username" formControlName="username">
+        <div class="invalid-form-control" *ngIf="errorControl('username', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class=" col-md-6" *ngIf="!logado">
+        <label for="email" class="form-label">Correo electrónico*</label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+        <div class="invalid-form-control" *ngIf="errorControl('email', 'pattern')">
+            Introduce un email válido.
+        </div>
+        <div class="invalid-form-control" *ngIf="errorControl('email', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-6" *ngIf="!logado">
+        <label for="password" class="form-label">Password*</label>
+        <input type="password" class="form-control" id="password" formControlName="password">
+        <div class="invalid-form-control" *ngIf=" errorControl('password', 'minlength')">
+            Introduce un mínimo de 10 caracteres.
+        </div>
+        <div class="invalid-form-control" *ngIf="errorControl('password', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-6">
+        <label for="direccion" class="form-label">Dirección*</label>
+        <input type="text" class="form-control" id="direccion" formControlName="direccion">
+        <div class="invalid-form-control" *ngIf="errorControl('direccion', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="ciudad" class="form-label">Ciudad*</label>
+        <input type="text" class="form-control" id="ciudad" formControlName="ciudad">
+        <div class="invalid-form-control" *ngIf="errorControl('ciudad', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-3">
+        <label for="telefono" class="form-label">Teléfono*</label>
+        <input type="tel" class="form-control" id="telefono" formControlName="telefono">
+        <div class="invalid-form-control" *ngIf=" errorControl('telefono', 'minlength')">
+            Introduce un teléfono válido.
+        </div>
+        <div class="invalid-form-control" *ngIf="errorControl('telefono', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="dni" class="form-label">DNI*</label>
+        <input type="text" class="form-control" id="dni" formControlName="dni">
+        <div class="invalid-form-control" *ngIf="errorControl('dni', 'dnivalidator')">
+            {{formulario.get('dni')?.errors?.['dnivalidator']}}
+        </div>
+        <div class=" invalid-form-control" *ngIf="errorControl('dni', 'required')">
+            El campo es requerido.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="fecha_nacimiento" class="form-label">Fecha de nacimiento*</label>
+        <input type="date" class="form-control" id="fecha_nacimiento" formControlName="fecha_nacimiento">
+        <div class="invalid-form-control" *ngIf="errorControl('fecha_nacimiento', 'required')">
+            El campo es requerido. Selecciona una fecha.
+        </div>
+    </div>
+    <div class="col-md-4">
+        <label for="genero" class="form-label">Género*</label>
+        <select class="form-select" id="genero" formControlName="genero">
+            <option selected disabled value="">Elige una opción</option>
+            <option value="m">Másculino</option>
+            <option value="f">Femenino</option>
+            <option value="otro">Otro</option>
+        </select>
+        <div class="invalid-form-control" *ngIf="errorControl('genero', 'required')">
+            El campo es requerido. Selecciona una opción.
+        </div>
+    </div>
+    <div class="col-12">
+        <label for="imagen" class="form-label">Imagen</label>
+        <input type="text" class="form-control" id="imagen" formControlName="imagen">
+    </div>
+    <div class="col-md-4" *ngIf="!logado">
+        <fieldset>
+            <legend>Selecciona*:</legend>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rol" id="rol1" formControlName="rol" value="profe">
+                <label class="form-check-label" for="rol1">Profesor</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="rol" id="rol2" formControlName="rol" value="alum">
+                <label class="form-check-label" for="rol2">Alumno</label>
+            </div>
+            <div class="invalid-form-control" *ngIf="errorControl('rol', 'required')">
+                El campo es requerido. Selecciona una opción.
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-md-8 row mt-3" *ngIf="formulario.get('rol')?.value == 'profe' || rolUsuario =='profe'">
+        <div class="col-md-6">
+            <label for="experiencia" class="form-label">Años de experiencia</label>
+            <input type="number" class="form-control" id="experiencia" formControlName="experiencia">
+        </div>
+        <div class="col-md-6">
+            <label for="precio" class="form-label">Precio la hora</label>
+            <input type="number" class="form-control" id="precio" formControlName="precio">
+        </div>
+    </div>
+    <div class="col-12" *ngIf="formulario.get('rol')?.value == 'profe' || rolUsuario =='profe'">
+        <fieldset>
+            <legend>Asignaturas</legend>
+            <div class="form-check form-check-inline me-4" *ngFor="let asignatura of asignaturasArr; let i = index">
+                <!--<input type="checkbox" class="form-check-input" id="{{asignatura.id}}" value="{{asignatura.id}}"
+                    [checked]="asignaturasProfe.includes(asignatura.id)">-->
+                <input type="checkbox" class="form-check-input" id="{{asignatura.id}}" formControlName="asignaturas"
+                    value="{{asignatura.id}}">
+                <label for="{{asignatura.id}}" class="form-check-label">{{asignatura.nombre}}</label>
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-12" *ngIf="!logado">
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="rgpd" formControlName="rgpd">
+            <label class="form-check-label" for="rgpd">
+                He leído y acepto la política de privacidad*.
+            </label>
+            <div class="invalid-form-control" *ngIf="errorControl('genero', 'requiredtrue')">
+                Debes aceptar la política de privacidad.
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mb-5 d-grid">
+        <button class="btn btn-success" type="submit" [disabled]="!formulario.valid">Enviar</button>
+    </div>
+</form>
