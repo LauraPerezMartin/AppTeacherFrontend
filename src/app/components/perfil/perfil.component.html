@@ -15,7 +15,8 @@
             </div>
 
             <div class="list-boton" *ngIf="rolUsuario !== 'admin'">
-                <a [routerLink]="['/dashboard/', rolUsuario]"><i class="bi bi-pencil-square activado"
+                <!-- boton modificar informacion -->
+                <a [routerLink]="['/dashboard/', rolUsuario,'actualizar']"><i class="bi bi-pencil-square activado"
                         alt="Modificar"></i></a>
             </div>
 

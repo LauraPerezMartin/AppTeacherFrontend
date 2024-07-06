@@ -15,7 +15,7 @@ import { Usuario } from 'src/app/interfaces/usuario.interface';
 })
 export class PerfilComponent implements OnInit {
   usuario: Profesor | Usuario | any = [];
-  rolUsuario = localStorage.getItem('rol');
+  rolUsuario: string | null = localStorage.getItem('rol');
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -36,7 +36,6 @@ export class PerfilComponent implements OnInit {
         this.usuario = response;
 
       } catch (error) {
-        console.log(error)
         Swal.fire('Error', 'Error al conectar con la base de datos', 'error')
       }
 
@@ -46,7 +45,7 @@ export class PerfilComponent implements OnInit {
   async validarProfesor(idUsuario: number, valid: boolean): Promise<void> {
     try {
       const response = await this.administradoresService.updateValidacion(idUsuario, !valid);
-      //cambiamos en valor de vanidado por el nuevo
+      //cambiamos en valor de validado por el nuevo
       this.usuario.validado = response.validado;
 
     } catch (error) {
