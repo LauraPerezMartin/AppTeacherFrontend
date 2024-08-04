@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Profesor } from 'src/app/interfaces/profesor.interface';
 import { Usuario } from 'src/app/interfaces/usuario.interface';
 import { PublicService } from 'src/app/services/public.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -12,24 +11,23 @@ import Swal from 'sweetalert2';
   templateUrl: './formulario.component.html',
   styleUrls: ['./formulario.component.css']
 })
+
 export class FormularioComponent implements OnInit {
   tipo: string = 'Registro';
   rolUsuario: string | null = localStorage.getItem('rol');
   token: string | null = localStorage.getItem('mytoken');
   logado: boolean = (this.token) ? true : false;
-  asignaturasArr: any[] = [];
-  asignaturasProfe: any[] = [];
-  checkboxList: any[] = [];
-  //jsonString: string = '';
-
+  asignaturasArr: any[] = []; //array de todas la asignaturas
+  asignaturasProfe: any[] = []; //array de las asignaturas que tiene el profesor
+  checkboxList: any[] = []; // controles checkbox para cargar en el FromArray
 
   formulario!: FormGroup;
   constructor(
     private publicService: PublicService,
     private usuariosService: UsuariosService,
-    private formBuilder: FormBuilder,
     private router: Router
   ) {
+    //inicializamos formulario
     this.formulario = new FormGroup({
       nombre: new FormControl("", [
         Validators.required,
@@ -73,8 +71,7 @@ export class FormularioComponent implements OnInit {
       ]),
       experiencia: new FormControl("", []),
       precio: new FormControl("", []),
-      asignaturas: this.formBuilder.group(this.checkboxList),
-      /*asignaturas: new FormControl("", []),*/
+      asignaturas: new FormArray(this.checkboxList),
       rgpd: new FormControl("", [
         Validators.requiredTrue
       ])
@@ -82,21 +79,19 @@ export class FormularioComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.getAsignaturasFormulario();
 
     if (this.logado) {
       this.tipo = "Actualizar";
       try {
         const usuario: any = await this.usuariosService.perfil();
-        // console.log(usuario);
 
         if (this.rolUsuario == 'profe') {
           this.asignaturasProfe = usuario.asignaturas.map((asignatura: any) => asignatura.asignatura_id);//obtenemos las asignaturas de ese profesor
-          //this.getAsignaturasFormulario();//obtenemos el json con las asignaturas de ese profesor
+          this.getAsignaturasFormulario();//obtenemos las asignaturas que tiene para el formulario
         }
-
         const fecha_nacimiento = usuario.fecha_nacimiento.slice(0, 10);//obtenemos los caracteres que necesitamos para la fecha
 
+        //Inicializacmos el formulario con los datos del profesor
         this.formulario = new FormGroup({
           id: new FormControl(usuario.id, []),
           nombre: new FormControl(usuario.nombre, [
@@ -124,29 +119,30 @@ export class FormularioComponent implements OnInit {
           ciudad: new FormControl(usuario.ciudad, [
             Validators.required
           ]),
+          latitud: new FormControl(usuario.latitud, []),
+          longitud: new FormControl(usuario.longitud, []),
           imagen: new FormControl(usuario.imagen, []),
           fecha_nacimiento: new FormControl(fecha_nacimiento, [
             Validators.required
           ]),
+          edad: new FormControl(usuario.edad, []),
           genero: new FormControl(usuario.genero, []),
           dni: new FormControl(usuario.dni, [
             this.dniValidator
           ]),
-          rol: new FormControl(usuario.rol, [
-            Validators.required
-          ]),
+          rol: new FormControl(usuario.rol, []),
           experiencia: new FormControl(usuario.experiencia, []),
           precio: new FormControl(usuario.precio, []),
-          asignaturas: this.formBuilder.group(this.checkboxList)/*,
-          asignaturas: this.formBuilder.array([JSON.parse(this.jsonString)]),
-          asignaturas: new FormArray(this.checkboxList)*/
+          asignaturas: new FormArray(this.checkboxList)
         }, []);
-        console.log(this.formulario.controls)
 
       } catch (error) {
         Swal.fire('Error', 'No existe el usuario.', 'error')
       }
     } else {
+      this.getAsignaturasFormulario();
+
+      //inicializamos formulario con asignaturas
       this.formulario = new FormGroup({
         nombre: new FormControl("", [
           Validators.required,
@@ -190,8 +186,7 @@ export class FormularioComponent implements OnInit {
         ]),
         experiencia: new FormControl("", []),
         precio: new FormControl("", []),
-        /*asignaturas: new FormArray([this.checkboxList]),*/
-        asignaturas: new FormControl("", []),
+        asignaturas: new FormArray(this.checkboxList),
         rgpd: new FormControl("", [
           Validators.requiredTrue
         ])
@@ -200,31 +195,19 @@ export class FormularioComponent implements OnInit {
   }
 
   async getAsignaturasFormulario(): Promise<void> {
+    this.checkboxList = [];
     try {
-      //no hace falta inicializar los camos ya que se hace en el html
-      //let jsonAsignaturas: string = '';
+      //obtenermos array de todas las asignaturas
       this.asignaturasArr = await this.publicService.getAllAsignaturas();
 
       this.asignaturasArr.forEach((asignatura: any) => {
+
+        const existe = this.asignaturasProfe.includes(asignatura.id);
+        let checked = (this.asignaturasProfe.length > 0 && existe) ? true : false;//si hay array de asignaturas de profesor y la asignatura existe en ella pasamos true si no false
         this.checkboxList.push(
-          this.formBuilder.control(false, { initialValueIsDefault: false })
+          new FormControl(checked)
         )
-        /*const asignaturaArr = [asignatura.id, ''];
-        this.checkboxList.push(asignaturaArr);*/
       })
-      console.log(this.checkboxList);
-      /*
-      //obtenemos un json en formato string de las asignaturas para añadir al formulario
-      this.asignaturas.forEach((asignatura: any, index) => {
-        //const valor = (this.asignaturasProfe.includes(asignatura.id)) ? `"true"` : `"false"`;
-        //this.jsonString += `"${asignatura.id}":"",`;
-        this.jsonString += `"${asignatura.id}":"",`
-        if (index === this.asignaturas.length - 1) {
-          this.jsonString = `{${this.jsonString.slice(0, this.jsonString.length - 1)}}`;
-        }
-      });
-      //this.jsonString = jsonAsignaturas;
-      console.log('jsonstring: ' + this.jsonString);*/
 
     } catch (error) {
       console.log(error);
@@ -232,9 +215,24 @@ export class FormularioComponent implements OnInit {
     }
   }
 
-  async getData() {
+  changeCheck(index: any): void {
+    this.formulario.value.asignaturas[index] = !this.formulario.value.asignaturas[index];
+  }
+
+  async getData(): Promise<void> {
     try {
       const usuario: Usuario = this.formulario.value;
+      const asignaturasNew: any = []
+
+      //creamos el array de asignaturas con la ids de las asignatura seleccionadas
+      this.asignaturasArr.forEach((asignatura, i) => {
+
+        if (this.formulario.value.asignaturas[i]) {
+          asignaturasNew.push(asignatura.id);
+        }
+      })
+      usuario.asignaturas = asignaturasNew;
+
       //Si el usuario esta logado se actualizan los datos si no se registra al nuevo usuario
       const res = (this.logado) ?
         await this.usuariosService.updateUsuario(usuario) :
@@ -246,8 +244,10 @@ export class FormularioComponent implements OnInit {
           text: "El usuario se ha creado/actualizado correctamente",
           icon: "success"
         });
-        console.log(usuario);
-        //this.router.navigate(['/login']);
+        //si el usuario esta logado lo redireccionamos a su dashboard si no a login
+        const routeSting = (this.logado) ? `dashboard/${this.rolUsuario}` : '/login'; //'dashboard/profe/perfil'
+
+        this.router.navigate([routeSting]);
       }
     } catch (error) {
       Swal.fire('Error', 'Error al crear/actualizar usuario.', 'error')

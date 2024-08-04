@@ -133,11 +133,12 @@
     <div class="col-12" *ngIf="formulario.get('rol')?.value == 'profe' || rolUsuario =='profe'">
         <fieldset>
             <legend>Asignaturas</legend>
-            <div class="form-check form-check-inline me-4" *ngFor="let asignatura of asignaturasArr; let i = index">
-                <!--<input type="checkbox" class="form-check-input" id="{{asignatura.id}}" value="{{asignatura.id}}"
-                    [checked]="asignaturasProfe.includes(asignatura.id)">-->
-                <input type="checkbox" class="form-check-input" id="{{asignatura.id}}" formControlName="asignaturas"
-                    value="{{asignatura.id}}">
+            <div class="form-check form-check-inline me-4" *ngFor="let asignatura of asignaturasArr; let i = index"
+                formArrayName="asignaturas">
+                <!--<input type="checkbox" class="form-check-input" id="{{asignatura.id}}"
+                    [checked]="asignaturasProfe.includes(asignatura.id)" [formControlName]="i"-->
+                <input type="checkbox" class="form-check-input" id="{{asignatura.id}}" [formControlName]="i"
+                    (change)="changeCheck(i)">
                 <label for="{{asignatura.id}}" class="form-check-label">{{asignatura.nombre}}</label>
             </div>
         </fieldset>
